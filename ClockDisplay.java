@@ -23,7 +23,26 @@ public class ClockDisplay
        minutos = new NumberDisplay(60);//el 60 es pq. el const. de NunberD tiene un parametro limite en el Cons.
        almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
     }
-
+    
+    /**
+     * Constructor con parámetros para fijar valores a los atributos.
+     */
+    public ClockDisplay(int valorH, int valorM)
+    {
+       horas = new NumberDisplay(24);//el 24 es pq. el const. de NunberD tiene un parametro limite en el Cons.
+       horas.setValue(valorH);//llamamos al mt. de NumberD y le pasmos el valor del parám. de este Const.
+       minutos = new NumberDisplay(60);//el 60 es pq. el const. de NunberD tiene un parametro limite en el Cons.
+       minutos.setValue(valorM);//llamamos al mt. de NumberD y le pasmos el valor del parám. de este Const.
+       almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
+    }
+    
+    /**
+     * Mt. para fijar la hora y los minutos actuales
+     */
+    public void setTime(int horaA, int minutoAc){
+        horas.setValue(horaA);
+        minutos.setValue(minutoAc);
+    }
     
 }
 
