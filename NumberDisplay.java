@@ -21,16 +21,16 @@ public class NumberDisplay
         limite = valorLimite;
     }
     
-//     /**
-//      * Mt.para fijar el valor actual del display.
-//      */
-//     public void setValue(int valorV){
-//         if( (valorV >= 0) && (valorV < limite)){
-//             valor = valorV;
-//         }
-//    
-//     
-//     }
+    /**
+     * Mt.para fijar el valor actual del display.
+     */
+    public void setValue(int valorV){
+        if( (valorV >= 0) && (valorV < limite)){
+            valor = valorV;
+        }
+   
+    
+    }
 
 
 
