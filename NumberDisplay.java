@@ -28,8 +28,13 @@ public class NumberDisplay
         if( (valorV >= 0) && (valorV < limite)){
             valor = valorV;
         }
-   
+    }
     
+    /**
+     * Mt. que devuelve el valor actual del display como entero.
+     */
+    public int getValue(){
+      return valor;  
     }
 
 
