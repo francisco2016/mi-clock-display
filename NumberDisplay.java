@@ -48,6 +48,13 @@ public class NumberDisplay
         }
         return devuelveV; 
     }
+    
+    /**
+     * Mt. para incrementar un minuto el valor del display, llegando al límite, pasa a valor 0.
+     */
+    public void increment(){
+        valor = (valor + 1) % limite;
+    }
 
 
 
