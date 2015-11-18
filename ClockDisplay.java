@@ -51,6 +51,25 @@ public class ClockDisplay
         String almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
         return almacenaH;
     }
+    
+    /**
+     * Mt. para hacer avanzar un minuto la hora actual.
+     */
+    public void timeTick(){
+        minutos.increment();
+        
+        if(minutos.getValue() == 60){
+            minutos.increment();
+            horas.increment();
+            almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
+        }
+        else{
+        minutos.increment();
+        almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
+        
+        }
+       
+    }
 }
 
 
