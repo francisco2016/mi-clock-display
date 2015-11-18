@@ -36,6 +36,18 @@ public class NumberDisplay
     public int getValue(){
       return valor;  
     }
+    
+    /**
+     * Mt. que devuelve el valor del display en forma de cadena de 2 caracteres.
+     */
+    public String getDisplayValue(){
+        String devuelveV = "";
+        devuelveV = valor+ "";
+        if(valor < 10){
+            devuelveV = "0" +valor;
+        }
+        return devuelveV; 
+    }
 
 
 
