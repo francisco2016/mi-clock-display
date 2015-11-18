@@ -44,6 +44,13 @@ public class ClockDisplay
         minutos.setValue(minutoAc);
     }
     
+    /**
+     * Mt. para devolver al hora como cadena de 5 carateres.
+     */
+    public String getTime(){
+        String almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
+        return almacenaH;
+    }
 }
 
 
