@@ -16,11 +16,11 @@ public class ClockDisplay
     // Permite elegir si estamos en formato 12 horas(true) o 24 horas(false)
     private boolean relojDe12Horas;
     //At. para crear año.
-    private int año;
+    private NumberDisplay anno;
     //At. para crear mes.
-    private int mes;
+    private NumberDisplay mes;
     //At. para crear dia.
-    private int dia;
+    private NumberDisplay dia;
     /**
      * Crea un objeto ClockDisplay con hora por defecto 00:00
      */
@@ -31,9 +31,12 @@ public class ClockDisplay
         // horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue(); 
         relojDe12Horas = reloj12Horas;
         updateHoraActual(); //invocamos este mt par poner el reloj en modo am.  pm
-        año = 15;
-        mes = 11;
-        dia = 20;
+        anno = new NumberDisplay(100);
+        anno.setValue(15);
+        mes = new NumberDisplay(12);
+        mes.setValue(11);
+        dia = new NumberDisplay(30);
+        dia.setValue(23);
     }
 
     /** 
@@ -105,27 +108,27 @@ public class ClockDisplay
             if (horas.getValue() == 0) 
             {
                 horaActual = "12" + ":"+
-                minutos.getDisplayValue() + " am";    
-
+                minutos.getDisplayValue() + " am. año " +año+ " mes " +mes+ " dia " +dia;    
+                
             } 
             else if(horas.getValue() < 12)
             {
                 horaActual = horas.getDisplayValue() + ":" +
-                minutos.getDisplayValue() + " am";
+                minutos.getDisplayValue() + " am. año " +año+ " mes " +mes+ " dia " +dia;
             }
             else if (horas.getValue() > 12)
             {
                 horaActual = (horas.getValue() - 12) + ":" + 
-                minutos.getDisplayValue() + " pm";
+                minutos.getDisplayValue() + " pm. año " +año+ " mes " +mes+ " dia " +dia;
             }
 
             else    // Si hora.getValue() == 12
             {
                 horaActual = horas.getDisplayValue() + ":" + 
-                minutos.getDisplayValue() + " pm";
+                minutos.getDisplayValue() + " pm. año " +año+ " mes " +mes+ " dia " +dia;
             }	
         }
-        else{horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue();}
+        else{horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue()+ " año " +año+ " mes " +mes+ " dia " +dia;}
     }
 
     // /**
