@@ -5,163 +5,160 @@
  * @author Francisco 
  * @version (Kingston,  Kingston,   Kingston,   Kingston)
  */
+/**
+ * Write a description of class ClockDisplay here.
+ * 
+ * @author (francisco.) 
+ * @version (prueba de MiClockDisplay HP PAVILION HP PAVILION HP PAVILION)
+ */
 public class ClockDisplay
 {
-    // Guarda la hora
-    private NumberDisplay horas;
-    // Guarda los minutos
-    private NumberDisplay minutos;
-    // Almacena la hora actual con 5 caracteres
-    private String horaActual;
-    // Permite elegir si estamos en formato 12 horas(true) o 24 horas(false)
-    private boolean relojDe12Horas;
-    //At. para crear año.
-    private NumberDisplay anno;
-    //At. para crear mes.
-    private NumberDisplay mes;
-    //At. para crear dia.
-    private NumberDisplay dia;
+    //At. para crear horas.
+    public NumberDisplay horas;
+    //At. para crear minutos.
+    public NumberDisplay minutos;
+    //At. para almacenar la hora.
+    public String almacenaH;
+    //At. para elegir modelo horario. AM, PM O 24H.
+    public boolean eligeFormato;
+    //At. para crear el año
+    public NumberDisplay anno;
+    //At. para crear el mes.
+    public NumberDisplay mes;
+    //At. para crear el dia.
+    public NumberDisplay dia;
+
     /**
-     * Crea un objeto ClockDisplay con hora por defecto 00:00. y fecha en 23/11/2015
+     * Cons. sin parámetros. eligeFormato permite elegir entre el modelo 24H o AM, PM.
      */
-    public ClockDisplay(boolean reloj12Horas,int horaY, int minutoY)
-    {
+    public ClockDisplay(boolean formatoAm){
         horas = new NumberDisplay(24);
         minutos = new NumberDisplay(60);
-        // horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue(); 
-        relojDe12Horas = reloj12Horas;
-        updateHoraActual(); //invocamos este mt par poner el reloj en modo am.  pm
+        //almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
+        eligeFormato = formatoAm;
         anno = new NumberDisplay(100);
         anno.setValue(15);
         mes = new NumberDisplay(12);
         mes.setValue(11);
         dia = new NumberDisplay(30);
-        dia.setValue(20);
+        dia.setValue(23);
+        devuelveH();
     }
 
-    /** 
-     * Crea un objeto ClockDisplay con la hora y los minutos dados
+    /**
+     * Cons. con parámetros para poder fijar la hora y los minutos.
      */
-    public ClockDisplay (int horasX, int minutosX,boolean reloj12Horas,int horaY, int minutoY,int annoA, int mesM, int diaD)
-    {
-        horas =   new NumberDisplay(24);
-        minutos = new NumberDisplay(60);      
-        horas.setValue(horasX); 
-        minutos.setValue(minutosX);
-        //horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue(); 
-        relojDe12Horas = reloj12Horas;
-        updateHoraActual(); //invocamos este mt par poner el reloj en modo am.  pm
+    public ClockDisplay(int valorH, int valorM, boolean formatoAm, int valorA, int valorMes, int valorD){
+        horas = new NumberDisplay(24);
+        horas.setValue(valorH);
+        minutos = new NumberDisplay(60);
+        minutos.setValue(valorM);
+        //almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
+        devuelveH();
+        eligeFormato = formatoAm ;
         anno = new NumberDisplay(100);
-        anno.setValue(annoA);
+            anno.setValue(valorA) ;
         mes = new NumberDisplay(12);
-        mes.setValue(mesM);
-        dia = new NumberDisplay(30);
-        dia.setValue(diaD);
+            mes.setValue(valorM);
+       dia = new NumberDisplay(30);
+            dia.setValue(valorD);
+        devuelveH();
     }
 
     /**
-     * Fija la hora del reloj a la hora y los minutos dados
+     * Mt. para fijar horas y minutos al objeto ClockDisplay.
      */
-    public void setTime(int horaY, int minutoY,int añoA, int mesM, int diaD)
-    {
-        horas.setValue(horaY);  
-        minutos.setValue(minutoY);
-        //horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
-        updateHoraActual(); //invocamos este mt par poner el reloj en modo am.  pm
-       
-        
+    public void setTime(int valorH, int valorM, int valorAño, int valorMes, int valorDia){
+        horas.setValue(valorH);
+        minutos.setValue(valorM);
+        anno.setValue(valorAño);
+        mes.setValue(valorMes);
+        dia.setValue(valorDia);
+        devuelveH();
     }
 
-    /**
-     * Devuelve la hora del reloj como una cadena de 5 caracteres
-     */
-    public String getTime()
-    {
-        return horaActual;
-    }
-
-    /**
-     * Hace avanzar la hora 1 minuto
-     */
-    public void timeTick()
-    {
-        minutos.increment();
-        if ( minutos.getValue() == 0) {
-            horas.increment();
-        }
-        //horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
-        updateHoraActual(); //invocamos este mt par poner el reloj en modo am.  pm
-    }
-
-    /**
-     * Actualiza el atributo horaActual siguiendo las normas de un
-     * reloj de 12 horas.
-     */
-    public void updateHoraActual()
-    {
-        if(relojDe12Horas){   
-            if (horas.getValue() == 0) 
-            {
-                horaActual = "12" + ":"+
-                minutos.getDisplayValue() + " am. año " +año+ " mes " +mes+ " dia " +dia;    
-                
-            } 
-            else if(horas.getValue() < 12)
-            {
-                horaActual = horas.getDisplayValue() + ":" +
-                minutos.getDisplayValue() + " am. año " +año+ " mes " +mes+ " dia " +dia;
-            }
-            else if (horas.getValue() > 12)
-            {
-                horaActual = (horas.getValue() - 12) + ":" + 
-                minutos.getDisplayValue() + " pm. año " +año+ " mes " +mes+ " dia " +dia;
-            }
-
-            else    // Si hora.getValue() == 12
-            {
-                horaActual = horas.getDisplayValue() + ":" + 
-                minutos.getDisplayValue() + " pm. año " +año+ " mes " +mes+ " dia " +dia;
-            }	
-        }
-        else{horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue()+ " año " +año+ " mes " +mes+ " dia " +dia;}
-    }
-
-    // /**
-    // * Actualiza el atributo horaActual siguiendo las normas de un
-    // * reloj de 12 horas. HECHO POR MIGUEL.
-    // */
-
-    //       public void updateHoraActual()
-    //     {
-    // 	 		String formato = "";
-    //             int horaAhora = horas.getValue(); 
-    //             if (horaAhora >= 12){
-    //                 formato = "p.m.";
-    //             }
-    //             else {
-    //                 formato = "a.m.";
-    //             }
-    //             if (horaAhora > 12) {
-    //                 horaAhora = horaAhora - 12;
-    //             }
-    // else if (horaAhora == 0) {
-    //                  horaAhora = 12;
-    //         }
-    //             horaActual = horaAhora + ":" + minutos.getDisplayValue() + " " + formato;
+    //     /**
+    //      * Mt. para devolver la hora como cadena de 5  caracteres en formato de 24 h.
+    //      */
+    //     public String devuelveH(){
+    //         almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
+    //         return almacenaH;
     //     }
+
+    //     /**
+    //      * Mt. para devolver la hora en formato AM PM.
+    //      */
+    //     public String devuelveH(){
+    //         if(horas.getValue() == 0){
+    //             almacenaH = 12 + ":" +minutos.getDisplayValue()+ " a.m";
+    //         }
+    //         else if( (horas.getValue() > 12) ){
+    //             almacenaH = horas.getValue() - 12 + ":" +minutos.getDisplayValue()+ " p.m";
+    //         }
+    //         else if(horas.getValue() < 12){
+    //              almacenaH = horas.getDisplayValue()  + ":" +minutos.getDisplayValue()+ " a.m";
+    //         }
+    //         else{
+    //             almacenaH = horas.getDisplayValue()  + ":" +minutos.getDisplayValue()+ " p.m";
+    //         }
+    //         return almacenaH;
+    //     }
+
     /**
-     * Método que permite alternar entre los modos del reloj
+     * Mt. Otra posivilidad más simple para devolver la hora en formato AM PM.
      */
-     public void changeFormat()
-    {
-    	if (relojDe12Horas) {
-    		relojDe12Horas = false;
-    	}
-    	else {
-    		relojDe12Horas = true;
-    	}
-    	updateHoraActual();	//necesitamos invocar este método para realizar el cambio.
-    }	
+    public String devuelveH(){
+        String AmPm = "";   
+        if(eligeFormato) {
+
+            int ahoraSon = horas.getValue(); 
+            if( ahoraSon >= 12){
+                AmPm = " p.m";
+            }
+            else {
+                AmPm = " a.m";
+            }
+            if(ahoraSon > 12){
+                ahoraSon = horas.getValue() -12;
+            }
+            else if(ahoraSon == 0) {
+                ahoraSon = 12;
+            }
+            almacenaH = ahoraSon+ ":" +minutos.getDisplayValue() +  " " + AmPm + " Año " +anno.getDisplayValue()+ " mes " +mes.getDisplayValue()+ " dia " +dia.getDisplayValue();
+
+        }
+        else{
+            almacenaH = horas.getDisplayValue()  + ":" +minutos.getDisplayValue()+ " " + AmPm + " Año " +anno.getDisplayValue()+ " mes " +mes.getDisplayValue()+ " dia " +dia.getDisplayValue();
+        }
+        return almacenaH;
+       
+    }
+
+    /**
+     * Mt. para hacer avanzar un minuto la hora.
+     */
+    public void timeTick(){
+        minutos.increment();
+        if(minutos.getValue() == 0){
+            horas.increment();
+            if( (horas.getValue() == 0) ){
+            dia.increment(); 
+            if( (dia.getValue() == 0)){
+            mes.increment();
+             if ( (mes.getValue() == 1)){
+            anno.increment();
+        }
+            
+        }
+            
+        }
+        }
+        
+         
+         
+        //almacenaH = horas.getDisplayValue()+ ":" +minutos.getDisplayValue();
+        devuelveH();
+    }   
 
 }
 
