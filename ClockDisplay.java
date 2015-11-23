@@ -22,7 +22,7 @@ public class ClockDisplay
     //At. para crear dia.
     private NumberDisplay dia;
     /**
-     * Crea un objeto ClockDisplay con hora por defecto 00:00
+     * Crea un objeto ClockDisplay con hora por defecto 00:00. y fecha en 23/11/2015
      */
     public ClockDisplay(boolean reloj12Horas,int horaY, int minutoY)
     {
@@ -36,13 +36,13 @@ public class ClockDisplay
         mes = new NumberDisplay(12);
         mes.setValue(11);
         dia = new NumberDisplay(30);
-        dia.setValue(23);
+        dia.setValue(20);
     }
 
     /** 
      * Crea un objeto ClockDisplay con la hora y los minutos dados
      */
-    public ClockDisplay (int horasX, int minutosX,boolean reloj12Horas,int horaY, int minutoY,int añoA, int mesM, int diaD)
+    public ClockDisplay (int horasX, int minutosX,boolean reloj12Horas,int horaY, int minutoY,int annoA, int mesM, int diaD)
     {
         horas =   new NumberDisplay(24);
         minutos = new NumberDisplay(60);      
@@ -51,9 +51,12 @@ public class ClockDisplay
         //horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue(); 
         relojDe12Horas = reloj12Horas;
         updateHoraActual(); //invocamos este mt par poner el reloj en modo am.  pm
-        año = añoA;
-        mes = mesM;
-        dia = diaD;
+        anno = new NumberDisplay(100);
+        anno.setValue(annoA);
+        mes = new NumberDisplay(12);
+        mes.setValue(mesM);
+        dia = new NumberDisplay(30);
+        dia.setValue(diaD);
     }
 
     /**
@@ -65,15 +68,7 @@ public class ClockDisplay
         minutos.setValue(minutoY);
         //horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
         updateHoraActual(); //invocamos este mt par poner el reloj en modo am.  pm
-        if( (año >= 0) && (año < 100)){
-            año = añoA;
-        }
-        if ( (mes >= 1) && (mes <= 12)){
-            mes = mesM;
-        }
-        if ( (dia >= 1) && (dia <= 30)){
-            dia = diaD;
-        }
+       
         
     }
 
